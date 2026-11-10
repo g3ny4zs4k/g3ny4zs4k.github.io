@@ -1,4 +1,73 @@
-asd asd
-as 2
-blabal
-balaaaaaa
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avega Lite Visualization</title>
+  <!-- Avega Lite + Vega embed via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+    header {
+      padding: 1rem 2rem;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    main {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    #vis {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Avega Lite Visualization</h1>
+  </header>
+  <main>
+    <div id="vis"></div>
+  </main>
+
+  <script type="text/javascript">
+    // Avega Lite visualization spec (stub)
+    const spec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      title: "Sample Chart",
+      data: {
+        values: [
+          { category: "A", value: 10 },
+          { category: "B", value: 20 },
+          { category: "C", value: 15 }
+        ]
+      },
+      mark: {
+        type: "bar",
+        tooltip: true
+      },
+      encoding: {
+        x: { field: "category", type: "nominal", title: "Category" },
+        y: { field: "value", type: "quantitative", title: "Value" }
+      }
+    };
+
+    vegaEmbed("#vis", spec, { actions: false, theme: "default" })
+      .then(() => console.log("Avega Lite chart rendered."))
+      .catch(err => console.error("Avega Lite render error:", err));
+  </script>
+</body>
+</html>
