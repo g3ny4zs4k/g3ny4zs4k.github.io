@@ -44,30 +44,15 @@
   </main>
 
   <script type="text/javascript">
-    // Avega Lite visualization spec (stub)
-    const spec = {
-      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-      title: "Sample Chart",
-      data: {
-        values: [
-          { category: "A", value: 10 },
-          { category: "B", value: 20 },
-          { category: "C", value: 15 }
-        ]
-      },
-      mark: {
-        type: "bar",
-        tooltip: true
-      },
-      encoding: {
-        x: { field: "category", type: "nominal", title: "Category" },
-        y: { field: "value", type: "quantitative", title: "Value" }
-      }
-    };
-
-    vegaEmbed("#vis", spec, { actions: false, theme: "default" })
-      .then(() => console.log("Avega Lite chart rendered."))
-      .catch(err => console.error("Avega Lite render error:", err));
+    // Load the Avega Lite spec from a separate JSON file
+    fetch("spec.json")
+      .then(response => response.json())
+      .then(spec => {
+        vegaEmbed("#vis", spec, { actions: false, theme: "default" })
+          .then(() => console.log("Avega Lite chart rendered."))
+          .catch(err => console.error("Avega Lite render error:", err));
+      })
+      .catch(err => console.error("Failed to load vis.json:", err));
   </script>
 </body>
 </html>
